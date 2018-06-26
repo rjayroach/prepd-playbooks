@@ -1,0 +1,10 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: localhost
+  tasks:
+    - include_role:
+        name: prepd/k8s/kubectl
+
+    - include_role:
+        name: prepd/k8s/kubectl
+        tasks_from: remote

@@ -1,0 +1,6 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: all
+  tasks:
+    - name: Install Fluentbit
+      command: 'helm install --name my-release stable/fluent-bit --set on_minikube=true'

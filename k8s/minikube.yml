@@ -1,0 +1,19 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: minikube
+  tasks:
+    - command: 'minikube status |grep minikube'
+      register: mks
+      ignore_errors: yes
+      changed_when: false
+
+    - set_fact:
+        minikube_running: "{{ mks.stdout_lines[0].split(' ')[-1] == 'Running' }}"
+
+    - include_role:
+        name: prepd/k8s/minikube
+        tasks_from: start
+      vars:
+        # The physical interface enp0s8 is specific to this hardware setup
+        minikube_spoof_intf: ansible_enp0s8
+      when: not minikube_running

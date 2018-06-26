@@ -1,0 +1,26 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: all
+  tasks:
+    - name: Install Prometheus
+      command: 'helm install stable/prometheus --name prometheus --namespace prometheus --set rbac.create=false'
+      when: false
+
+    - name: Install Grafana
+      command: 'helm install stable/grafana --name grafana --set server.adminPassword=test,server.service.type=NodePort,server.service.nodePort={{ prepd_machine.cluster.grafana_port }}'
+      when: false
+
+    # TODO: Change this to get_url to get the JSON dashbaord
+    # NOTE: The dashboard tested here is too old in fact
+    # - name: Import Grafana dashboard foo
+    #   grafana_dashboard:
+    #     grafana_url: 'http://{{ prepd_machine.cluster.host }}:{{ prepd_machine.cluster.grafana_port }}'
+    #     # grafana_api_key: XXXXXXXXXXXX
+    #     grafana_user: admin
+    #     grafana_password: test
+    #     state: present
+    #     message: Updated by ansible
+    #     overwrite: yes
+    #     slug: happy
+    #     path: /home/vagrant/data/kubernetes-pod-monitoring_rev1.json
+    #   when: false

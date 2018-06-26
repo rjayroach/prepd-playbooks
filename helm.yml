@@ -1,0 +1,25 @@
+#!/usr/bin/env ansible-playbook
+# List repoistories in registry: curl -X GET http://node1:31840/v2/_catalog
+# TODO:
+# remove kuberplate from /usr/share/ansible/roles
+# move helm install to setup k8s
+# move ~/prepd/app/ansible/k8s.yml to setup k8s
+---
+- hosts: localhost
+  vars:
+    charts: [docker-registry]
+
+  tasks:
+    - name: Install helm
+      include_role:
+        name: prepd/k8s/helm
+      when: false
+
+    - name: Debug chart values
+      include_role:
+        name: prepd/k8s/chart
+      vars:
+        task: debug
+      with_items: '{{ charts }}'
+      loop_control:
+        loop_var: chart

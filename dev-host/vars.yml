@@ -1,0 +1,24 @@
+---
+git_user:
+  name: John Doe Developer
+  email: email@example.com
+
+extra_items:
+  mac:
+    - google-chrome
+    - dropbox
+    - evernote
+    - iterm2
+    - firefox
+    - kindle
+    - postman
+    - skype
+    - slack
+    - spotify
+    - transmission
+    - vlc
+  debian:
+    - google-chrome-stable
+
+extra_items_not_installing:
+  - insomniax

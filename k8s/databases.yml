@@ -1,0 +1,16 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: kubectl
+  vars_files:
+    - '{{ playbook_vars_dir }}/k8s/main.yml'
+  tasks:
+    - debug: var=playbook_vars_dir
+    - debug: var=test
+
+    # See: https://github.com/kubernetes/charts/tree/master/stable/redis
+    - name: Install Redis
+      command: 'helm install stable/redis --values {{ playbook_vars_dir }}/k8s/redis-values-production.yaml'
+
+    # See: https://github.com/kubernetes/charts/tree/master/stable/postgresql
+    - name: Install Postgresql
+      command: 'helm install --name my-release -f {{ playbook_vars_dir }}/k8s/postgres-values.yml stable/postgresql'

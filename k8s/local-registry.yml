@@ -1,0 +1,13 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: all
+  tasks:
+    - name: Configure docker to allow push to insecure registry running in local cluster
+      include_role:
+        name: prepd/docker
+        tasks_from: insecure-registry
+      vars:
+        registry: '{{ prepd_machine.cluster.host }}:{{ prepd_machine.cluster.registry_port }}'
+
+    - name: Install local registry in cluster
+      command: 'helm install stable/docker-registry --name local-registry --set service.type=NodePort,service.nodePort={{ prepd_machine.cluster.registry_port }}'

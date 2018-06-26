@@ -1,0 +1,20 @@
+#!/usr/bin/env ansible-playbook
+# NOTE: run setup.yml with -K to prompt for sudo password
+# NOTE: the order of the roles is important: virtualbox is first b/c it will fail, yadr is next b/c it sets the shell
+# roles installed after that often depend on the shell type which is zsh in the case of yadr
+---
+- hosts: localhost
+  vars_files:
+    - vars.yml
+  roles:
+    - prepd/virtualbox
+    - prepd/yadr
+    - prepd/vagrant
+    - prepd/packer
+    - prepd/prepd-tools
+    - prepd/extras
+
+# TODO: put the extra role still has some legacy code; refactor that when installing on linux laptop
+# TODO: cordova needs some work
+# TODO: developer/setup role contains the list of packages to install, but is not invoked here yet
+# TODO: when the installation is 'standarized' then put all the roles into a summary role in prepd

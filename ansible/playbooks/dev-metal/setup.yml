@@ -3,9 +3,10 @@
 # NOTE: the order of the roles is important: virtualbox is first b/c it will fail, yadr is next b/c it sets the shell
 # roles installed after that often depend on the shell type which is zsh in the case of yadr
 ---
-- hosts: localhost
-  vars_files:
-    - vars.yml
+- name: Install base packages on developer machine that will be hosting prepd VMs
+  hosts: dev-metal
+  # vars_files:
+  #   - vars.yml
   roles:
     - prepd/virtualbox
     - prepd/yadr

@@ -2,14 +2,15 @@
 # vagrant machine provisioner (based on host's ansible.groups values set in Vagrantfile)
 ---
 # TODO: Move this to the roles that setup a virtual machine
-- hosts: all
-  tasks:
-    - file:
-        path: '{{ ansible_env.HOME }}/{{ item }}'
-        state: absent
-      with_items: [shutdown.sh, yankring_history_v2.txt]
+# - hosts: all
+#   tasks:
+#     - file:
+#         path: '{{ ansible_env.HOME }}/{{ item }}'
+#         state: absent
+#       with_items: [shutdown.sh, yankring_history_v2.txt]
 
-- hosts: kubectl #:!minikube
+- name: Setup control machine to manage a remote minikube server
+  hosts: k8s-minikube-controller
   # NOTE: These vars need to be accessible to the project, e.g. utils.yml -e@utils/build.yml needs the cluster_host and local_registry_port in order to tag the image to push it
   # This should go into the machine's prepd.yml config file which also has directory locations. Anything that is a machine wide configuration goes here
   # This would include machine's timezone, docker daemon config, perhaps PG installation and so on. The project could still configure this stuff, but doesn't have to

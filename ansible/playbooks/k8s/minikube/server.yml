@@ -1,6 +1,7 @@
 #!/usr/bin/env ansible-playbook
 ---
-- hosts: minikube
+- name: Start minikube server with access from a remote machine
+  hosts: k8s-minikube-server
   tasks:
     - command: 'minikube status |grep minikube'
       register: mks

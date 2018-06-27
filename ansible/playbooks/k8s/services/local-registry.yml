@@ -1,6 +1,7 @@
 #!/usr/bin/env ansible-playbook
 ---
-- hosts: all
+- name: Install a local docker registry into a k8s cluster
+  hosts: k8s-services
   tasks:
     - name: Configure docker to allow push to insecure registry running in local cluster
       include_role:

@@ -1,2 +1,0 @@
-# playbook_vars_dir: '{{ ansible_env.HOME }}/playbook-vars'
-playbook_vars_dir: '{{ inventory_dir }}/vars'

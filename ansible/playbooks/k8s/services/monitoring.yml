@@ -1,6 +1,7 @@
 #!/usr/bin/env ansible-playbook
 ---
-- hosts: all
+- name: Install Prometheus and Grafana into a k8s cluster for monitoring
+  hosts: k8s-services
   tasks:
     - name: Install Prometheus
       command: 'helm install stable/prometheus --name prometheus --namespace prometheus --set rbac.create=false'

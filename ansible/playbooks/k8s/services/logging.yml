@@ -1,6 +1,7 @@
 #!/usr/bin/env ansible-playbook
 ---
-- hosts: all
+- name: Install fluentbit as a DaemonSet
+  hosts: k8s-services
   tasks:
     - name: Install Fluentbit
       command: 'helm install --name my-release stable/fluent-bit --set on_minikube=true'

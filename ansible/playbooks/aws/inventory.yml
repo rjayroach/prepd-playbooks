@@ -1,0 +1,13 @@
+#!/usr/bin/env ansible-playbook
+---
+- name: Configure inventories for AWS
+  hosts: aws
+  tasks:
+    - name: Install AWS CLI tool
+      include_role:
+        name: prepd/aws/cli
+
+    - name: Configure the prepd project's ansible inventories to use AWS (boto's ec2.py and ec2.ini) if project_environments is defined
+      include_role:
+        name: prepd/aws/inventory
+      when: project_environments is defined

@@ -1,0 +1,3 @@
+---
+aws_inventory_environments: '{{ project_environments }}'
+aws_inventory_boto_profile: '{{ project_name }}-ansible'

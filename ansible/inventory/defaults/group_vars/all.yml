@@ -1,3 +1,6 @@
 # default values for all projects
 # playbook_vars_dir: '{{ inventory_dir }}/../../vars'
 project_dir: '{{ ansible_env.HOME }}/test-projects'
+project_environments:
+  development:
+project_name: default

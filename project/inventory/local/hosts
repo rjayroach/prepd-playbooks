@@ -13,5 +13,11 @@ localhost
 [k8s-services]
 localhost
 
+[aws]
+localhost
+
+[terraplate]
+localhost
+
 [k8s-minikube-server]
 node1

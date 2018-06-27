@@ -1,0 +1,6 @@
+---
+terraplate_domain: hashapp # changed from terraplate_app
+terraplate_service: backend
+terraplate_component: compute
+# terraplate_task: lib # app, setup
+terraplate_env: development

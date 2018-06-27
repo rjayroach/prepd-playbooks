@@ -3,3 +3,10 @@
 # - import_playbook: ../lib/k8s-minikube/server.yml
 # - import_playbook: ../lib/k8s-services/databases.yml
 - import_playbook: services/databases.yml
+#   tasks:
+#     - include_role:
+#         name: prepd/k8s/kubectl
+# 
+#     - include_role:
+#         name: prepd/k8s/kubectl
+#         tasks_from: remote

@@ -1,1 +1,2 @@
-playbook_vars_dir: '{{ inventory_dir }}/../../vars'
+# project overrides
+# project_dir: '{{ ansible_env.HOME }}/test-projects-local'

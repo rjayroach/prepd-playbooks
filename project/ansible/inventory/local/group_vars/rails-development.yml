@@ -1,0 +1,30 @@
+---
+rails_app_name: hash-server.orig
+
+# For existing projects
+x_git_repos:
+  - { project_name: 'api', repo: 'git@github.com:rhodesedge/recheck-api.git' }
+  - { project_name: 'dry-auth', repo: 'git@github.com:rjayroach/dry-auth.git' }
+
+# For existing projects
+tmuxinator_sessions:
+  - { name: '{{ rails_app_name }}', src: '{{ project_dir }}/{{ rails_app_name }}/.tmuxinator.yml' }
+
+env_files:
+  - { name: '{{ project_dir }}/{{ rails_app_name }}/.env', vars: '{{ env_vars }}' }
+  # - { name: '{{ project_dir }}/{{ rails_app_name }}/.env.test', vars: '{{ env_vars_test }}' }
+
+postgres_users:
+  - { name: '{{ env_vars.DATABASE_USERNAME }}', password: '{{ env_vars.DATABASE_PASSWORD }}' }
+
+postgres_databases:
+  - { name: '{{ env_vars.DATABASE_NAME }}', owner: '{{ env_vars.DATABASE_USERNAME }}' }
+  - { name: '{{ env_vars.DATABASE_TEST }}', owner: '{{ env_vars.DATABASE_USERNAME }}' }
+
+ruby_versions:
+  - 2.4.2
+
+# For existing projects
+x_rails_apps:
+  - { name: 'api', bundle: yes, migrate: yes }
+  - { name: 'dry-auth', local: yes }

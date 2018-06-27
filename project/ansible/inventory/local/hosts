@@ -4,6 +4,9 @@ node1 ansible_host=node1 ansible_user=vagrant
 [dev-metal]
 localhost
 
+[rails-development]
+localhost
+
 [k8s-minikube-controller]
 localhost
 
